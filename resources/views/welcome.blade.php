@@ -7,9 +7,16 @@
         <!-- Blog Posts Section -->
         <section class="lg:w-3/4 space-y-10">
 
-            <h2 class="text-3xl font-bold text-gray-800 tracking-tight">
-                Latest <span class="text-indigo-600">Posts</span>
-            </h2>
+            <div class="flex items-center gap-3">
+                <h2 class="text-3xl font-bold text-gray-800 tracking-tight">
+                    Latest <span class="text-indigo-600">Posts</span>
+                </h2>
+                <a href="{{ route('posts.manage') }}" 
+                   class="inline-flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-bold shadow-sm hover:shadow-md"
+                   title="Manage Posts">
+                    +
+                </a>
+            </div>
 
             @if($posts->count())
 
@@ -94,9 +101,16 @@
         <aside class="lg:w-1/4">
             <div class="bg-white/80 backdrop-blur-lg border border-gray-200 rounded-2xl shadow-sm p-6 top-28">
 
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">
-                    Categories
-                </h2>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">
+                        Categories
+                    </h2>
+                    <a href="{{ route('categories') }}" 
+                       class="inline-flex items-center justify-center w-8 h-8 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-bold shadow-sm hover:shadow-md"
+                       title="Manage Categories">
+                        +
+                    </a>
+                </div>
 
                 <ul class="space-y-3">
                     @foreach($categories as $category)
