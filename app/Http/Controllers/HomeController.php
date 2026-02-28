@@ -14,6 +14,6 @@ class HomeController extends Controller
             $query->where('category_id', request('category_id'));
         })->latest()->get();
  
-        return view('layouts.home', compact('categories', 'posts'));
+        return view('welcome', compact('categories', 'posts'));
     }
 }
