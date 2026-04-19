@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MonkeyPace - Reaction Time Training Game</title>
+    <title>MonkeyPace - Game Reviews</title>
     <style>
         * {
             margin: 0;
@@ -15,24 +15,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #1f3330;
-            background: linear-gradient(140deg, #4ecdc4 0%, #99d9ba 45%, #eafaf3 100%);
-            height: 100vh;
-            overflow: hidden;
-            display: grid;
-            grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr) auto;
+            background:
+                radial-gradient(circle at 12% 14%, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 40%),
+                radial-gradient(circle at 88% 8%, rgba(106, 196, 175, 0.32), rgba(106, 196, 175, 0) 36%),
+                linear-gradient(140deg, #52cec5 0%, #9adabd 42%, #ecfbf4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header */
         header {
-            background: linear-gradient(140deg, #b2e7cd  0%, #99d9ba 47%, #eafaf3 100%);;
+            background: linear-gradient(140deg, #b2e7cd 0%, #99d9ba 47%, #eafaf3 100%);
             padding: 25px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.08), 0 10px 24px rgba(0, 0, 0, 0.12);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
             width: 100%;
         }
 
@@ -61,6 +59,8 @@
             cursor: pointer;
             padding: 8px 12px;
             border-radius: 6px;
+            border: none;
+            background: transparent;
             transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
@@ -79,6 +79,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 12px;
+            border: none;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -258,155 +259,6 @@
             border-color: #d62828;
         }
 
-        /* Purpose Section */
-        .purpose-section {
-            background-color: #dbeee5;
-            padding: 16px 26px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            align-items: center;
-            border: 1px solid #cfe9dc;
-            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
-            overflow: hidden;
-        }
-
-        .purpose-content h1 {
-            font-size: clamp(28px, 3.3vw, 42px);
-            margin-bottom: 8px;
-            color: #153a3e;
-        }
-
-        .purpose-content p {
-            font-size: clamp(13px, 1.1vw, 16px);
-            margin-bottom: 8px;
-            line-height: 1.45;
-            color: #1f3330;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: #4ecdc4;
-            color: #153a3e;
-            padding: 10px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #99d9ba;
-        }
-
-        .arcade-cabinet {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            margin-left: 0;
-        }
-
-        .arcade-cabinet img {
-            max-width: 100%;
-            height: auto;
-            max-height: min(32vh, 300px);
-        }
-
-        /* Features Grid */
-        .features-section {
-            padding: 16px 26px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-            overflow: hidden;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 100%;
-        }
-
-        .feature-box {
-            background-color: #dbeee5;
-            padding: 16px 14px;
-            min-height: 110px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #cfe9dc;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
-        }
-
-        .feature-box h3 {
-            font-size: clamp(18px, 2vw, 24px);
-            margin-bottom: 4px;
-            color: #153a3e;
-        }
-
-        .feature-box p {
-            font-size: clamp(12px, 0.95vw, 14px);
-            color: #1f3330;
-        }
-
-        .full-width-box {
-            grid-column: 1 / -1;
-            max-width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-
-        /* Reviews Section */
-        .reviews-section {
-            padding: 60px 40px;
-        }
-
-        .reviews-content {
-            text-align: center;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #dbeee5;
-            padding: 12px 24px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            border: 1px solid #cfe9dc;
-            box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            color: #153a3e;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #1f3330;
-        }
-
         .access-popup-backdrop {
             position: fixed;
             inset: 0;
@@ -543,15 +395,263 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body {
-                height: auto;
-                min-height: 100vh;
-                overflow: auto;
-                display: block;
-            }
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 98%;
+            margin: 40px auto;
+            padding: 0;
+        }
 
+        .page-header {
+            margin-bottom: 36px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(32px, 5.5vw, 52px);
+            color: #153a3e;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: clamp(16px, 2.2vw, 22px);
+            color: #2e5450;
+        }
+
+        .game-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .game-tab {
+            padding: 12px 20px;
+            border: 2px solid #4ecdc4;
+            background: #f0fffe;
+            color: #173a3e;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .game-tab:hover {
+            transform: translateY(-2px);
+            background: #bce6d9;
+            box-shadow: 0 8px 14px rgba(20, 85, 78, 0.15);
+        }
+
+        .game-tab.active {
+            background: #4ecdc4;
+            color: white;
+            box-shadow: 0 10px 18px rgba(20, 93, 100, 0.24);
+        }
+
+        .content-shell {
+            background: linear-gradient(160deg, rgba(242, 255, 250, 0.9) 0%, rgba(228, 248, 239, 0.85) 100%);
+            border: 2px solid rgba(55, 130, 124, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 12px 28px rgba(12, 70, 79, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+        }
+
+        .rating-summary {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(78, 205, 196, 0.2);
+        }
+
+        .stars {
+            font-size: 28px;
+            color: #ffc107;
+            letter-spacing: 4px;
+        }
+
+        .rating-info h3 {
+            font-size: 18px;
+            color: #153a3e;
+            margin-bottom: 4px;
+        }
+
+        .rating-info p {
+            font-size: 14px;
+            color: #5a7f7b;
+        }
+
+        .review-form {
+            background: linear-gradient(160deg, #f7fdfa 0%, #eaf7f1 100%);
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 30px;
+        }
+
+        .review-form h3 {
+            font-size: 18px;
+            color: #153a3e;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #355f59;
+            margin-bottom: 8px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star-btn {
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            color: #ddd;
+        }
+
+        .star-btn:hover,
+        .star-btn.active {
+            color: #ffc107;
+            transform: scale(1.2);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(78, 205, 196, 0.3);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            color: #1f3330;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 8px rgba(78, 205, 196, 0.2);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: 2px solid #4ecdc4;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45b8b0;
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #4ecdc4;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(78, 205, 196, 0.1);
+        }
+
+        .login-prompt {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            color: #856404;
+            text-align: center;
+        }
+
+        .login-prompt a {
+            color: #004085;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .review-item {
+            background: white;
+            border: 1px solid rgba(78, 205, 196, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .review-player {
+            font-weight: 700;
+            color: #153a3e;
+        }
+
+        .review-rating {
+            font-size: 14px;
+            color: #ffc107;
+            letter-spacing: 2px;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #7a9a95;
+        }
+
+        .review-comment {
+            font-size: 14px;
+            color: #3f6760;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #7a9a95;
+        }
+
+        @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
                 gap: 10px;
@@ -567,45 +667,28 @@
                 height: 40px;
             }
 
-            .purpose-section {
-                grid-template-columns: 1fr;
-                padding: 40px 20px;
+            main {
+                width: 100%;
+                margin: 20px auto;
+                padding: 0 16px;
             }
 
-            .purpose-content h1 {
-                font-size: 36px;
+            .content-shell {
+                padding: 16px;
             }
 
-            .purpose-content p {
-                font-size: 16px;
+            .review-form {
+                padding: 16px;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 40px 20px;
-            }
-
-            .full-width-box {
-                max-width: 100%;
-            }
-
-            footer {
+            .rating-summary {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
-                padding: 20px;
-            }
-
-            .arcade-cabinet {
-                font-size: 80px;
-                margin-top: 20px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <a class="logo" href="{{ route('home') }}" aria-label="Go to homepage">
             <img src="{{ asset('logo.png') }}?v={{ @filemtime(public_path('logo.png')) }}" alt="MonkeyPace Logo" class="logo-img">
@@ -613,7 +696,7 @@
         </a>
         <nav class="nav-buttons">
             <button id="loginButton" onclick="handleLogin()">Log In</button>
-            <button id="usernameDisplay" type="button" style="display: none; border: none; background: transparent;" onclick="handleMenuAction('Profile')" aria-label="View profile"></button>
+            <button id="usernameDisplay" type="button" style="display: none;" onclick="handleMenuAction('Profile')" aria-label="View profile"></button>
             <div class="menu-icon" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -656,51 +739,50 @@
         </div>
     </div>
 
-    <!-- Purpose Section -->
-    <section class="purpose-section">
-        <div class="purpose-content">
-            <h1>PURPOSE</h1>
-            <p>This project focuses on a simple reaction-time training game using Raspberry Pi. The system measures how quickly users respond to visual cues and records their performance as well as display results and track improvement over multiple sessions.</p>
-            <p>The project aims to support learning by enhancing attention, decision-making speed, and coordination.</p>
-            <button class="cta-button" onclick="handleLogin()">Buy Our Product</button>
+    <main>
+        <div class="page-header">
+            <h1>Game Reviews</h1>
+            <p>Share your feedback and read what other players think about our games.</p>
         </div>
-        <div class="arcade-cabinet">
-            <img src="{{ asset('arcade.png') }}" alt="">
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="features-grid">
-            <div class="feature-box">
-                <h3>Mini - Games</h3>
-                <p>Diverse yourselves with challenges</p>
-            </div>
-            <div class="feature-box">
-                <h3>Track Your Progress</h3>
-                <p>Monitor Your Improvements</p>
-            </div>
-            <div class="feature-box">
-                <h3>Leaderboard</h3>
-                <p>Compete With Others</p>
-            </div>
-            <div class="feature-box">
-                <h3>Guides</h3>
-                <p>How to use our Product</p>
-            </div>
-            <div class="feature-box full-width-box">
-                <h3>Reviews</h3>
-                <p>Share Your Feedback</p>
-            </div>
-        </div>
-    </section>
+        <div class="game-tabs" id="gameTabs"></div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="{{ route('contact') }}">Contact Us</a>
+        <div class="content-shell">
+            <!-- Rating Summary -->
+            <div class="rating-summary" id="ratingSummary">
+                <div class="stars" id="ratingStars">★★★★★</div>
+                <div class="rating-info">
+                    <h3 id="avgRatingText">4.5 out of 5</h3>
+                    <p id="reviewCountText">Based on 128 reviews</p>
+                </div>
+            </div>
+
+            <!-- Review Form -->
+            <div class="review-form" id="reviewForm" style="display: none;">
+                <h3>Share Your Review</h3>
+                <div class="login-prompt" id="loginPrompt" style="display: none;">
+                    <p>You need to <a href="{{ route('login.page') }}">log in</a> to write a review.</p>
+                </div>
+                <form id="reviewFormElement" style="display: none;">
+                    <div class="form-group">
+                        <label>Your Rating</label>
+                        <div class="star-rating" id="starRating"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Comment (optional)</label>
+                        <textarea id="commentInput" placeholder="Share your thoughts about this game..."></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Post Review</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Reviews List -->
+            <div class="reviews-list" id="reviewsList"></div>
         </div>
-    </footer>
+    </main>
 
     <script>
         const loginPageUrl = {{ Js::from(route('login.page')) }};
@@ -710,7 +792,160 @@
         const guidesPageUrl = {{ Js::from(route('guides')) }};
         const reviewsPageUrl = {{ Js::from(route('reviews')) }};
         const profilePageUrl = {{ Js::from(route('profile')) }};
-        const contactPageUrl = {{ Js::from(route('contact')) }};
+        const reviewsApiUrl = {{ Js::from(route('api.reviews.index', ['gameName' => 'GAME'])) }}.replace('GAME', '');
+        const storeReviewApiUrl = {{ Js::from(route('api.reviews.store')) }};
+        const gameOrder = ['shape-match-hue', 'rapid-tiles', 'monkey-ball', 'math-quest'];
+        let currentGame = 'shape-match-hue';
+        let selectedRating = 0;
+        let currentUser = null;
+
+        function initializeUser() {
+            const currentUserRaw = localStorage.getItem('quickstrike_current_user');
+            currentUser = currentUserRaw && currentUserRaw !== 'null' ? JSON.parse(currentUserRaw) : null;
+            updateAuthButtonsVisibility();
+        }
+
+        function toTitleCase(text) {
+            return String(text || '')
+                .split('-')
+                .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+                .join(' ');
+        }
+
+        function renderGameTabs() {
+            const tabsRoot = document.getElementById('gameTabs');
+            tabsRoot.innerHTML = gameOrder.map((game) => {
+                const isActive = game === currentGame;
+                return '<button type="button" class="game-tab' + (isActive ? ' active' : '') + '" onclick="switchGame(\'' + game + '\')">' + toTitleCase(game) + '</button>';
+            }).join('');
+        }
+
+        function switchGame(gameName) {
+            currentGame = gameName;
+            selectedRating = 0;
+            resetForm();
+            renderGameTabs();
+            loadReviews();
+        }
+
+        function renderStarRating() {
+            const container = document.getElementById('starRating');
+            container.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'star-btn' + (i <= selectedRating ? ' active' : '');
+                btn.textContent = '★';
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    selectedRating = i;
+                    renderStarRating();
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        function resetForm() {
+            selectedRating = 0;
+            document.getElementById('commentInput').value = '';
+            renderStarRating();
+        }
+
+        async function loadReviews() {
+            try {
+                const response = await fetch(reviewsApiUrl + currentGame);
+                const data = await response.json();
+
+                // Update rating summary
+                const avgRating = data.avg_rating || 0;
+                const totalReviews = data.total_reviews || 0;
+                const fullStars = Math.round(avgRating);
+                
+                document.getElementById('ratingStars').textContent = '★'.repeat(fullStars) + '☆'.repeat(5 - fullStars);
+                document.getElementById('avgRatingText').textContent = avgRating > 0 ? avgRating.toFixed(1) + ' out of 5' : 'No ratings yet';
+                document.getElementById('reviewCountText').textContent = 'Based on ' + totalReviews + ' review' + (totalReviews !== 1 ? 's' : '');
+
+                // Update form visibility
+                const formContainer = document.getElementById('reviewForm');
+                if (currentUser) {
+                    formContainer.style.display = 'block';
+                    document.getElementById('loginPrompt').style.display = 'none';
+                    document.getElementById('reviewFormElement').style.display = 'block';
+                } else {
+                    formContainer.style.display = 'block';
+                    document.getElementById('loginPrompt').style.display = 'block';
+                    document.getElementById('reviewFormElement').style.display = 'none';
+                }
+
+                // Render reviews
+                const reviewsList = document.getElementById('reviewsList');
+                if (data.reviews.length === 0) {
+                    reviewsList.innerHTML = '<div class="empty-state">No reviews yet. Be the first to review this game!</div>';
+                    return;
+                }
+
+                reviewsList.innerHTML = data.reviews.map((review) => {
+                    const date = new Date(review.created_at).toLocaleDateString();
+                    const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+                    return '<div class="review-item">' +
+                        '<div>' +
+                            '<div class="review-header">' +
+                                '<span class="review-player">' + (review.player_name || 'Anonymous') + '</span>' +
+                                '<span class="review-rating">' + stars + '</span>' +
+                            '</div>' +
+                            '<div class="review-date">' + date + '</div>' +
+                            (review.comment ? '<div class="review-comment">' + review.comment + '</div>' : '') +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+            } catch (error) {
+                console.error('Error loading reviews:', error);
+                document.getElementById('reviewsList').innerHTML = '<div class="empty-state">Unable to load reviews.</div>';
+            }
+        }
+
+        async function handleSubmitReview(e) {
+            e.preventDefault();
+
+            if (!currentUser) {
+                window.location.href = loginPageUrl;
+                return;
+            }
+
+            if (selectedRating === 0) {
+                alert('Please select a rating');
+                return;
+            }
+
+            const comment = document.getElementById('commentInput').value.trim();
+
+            try {
+                const response = await fetch(storeReviewApiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
+                    },
+                    body: JSON.stringify({
+                        game_name: currentGame,
+                        player_name: currentUser.username || currentUser.name || 'Player',
+                        rating: selectedRating,
+                        comment: comment || null,
+                    }),
+                });
+
+                if (response.ok) {
+                    resetForm();
+                    loadReviews();
+                    alert('Review posted successfully!');
+                } else {
+                    alert('Failed to post review');
+                }
+            } catch (error) {
+                console.error('Error posting review:', error);
+                alert('An error occurred while posting your review');
+            }
+        }
 
         function updateAuthButtonsVisibility() {
             const loginButton = document.getElementById('loginButton');
@@ -718,32 +953,24 @@
             const sideMenuUserProfile = document.getElementById('sideMenuUserProfile');
             const sideMenuUserName = document.getElementById('sideMenuUserName');
             const sideMenuUserAvatar = document.getElementById('sideMenuUserAvatar');
-            const currentUserRaw = localStorage.getItem('quickstrike_current_user');
-            const profilePictureRaw = localStorage.getItem('quickstrike_profile_picture');
-            const hasCurrentUser = currentUserRaw && currentUserRaw !== 'null';
 
-            if (hasCurrentUser) {
+            if (currentUser) {
                 loginButton.style.display = 'none';
-                try {
-                    const currentUser = JSON.parse(currentUserRaw);
-                    const userName = currentUser.name || currentUser.username || 'User';
-                    usernameDisplay.textContent = userName;
-                    usernameDisplay.style.display = 'block';
-                    
-                    // Update side menu user profile
-                    sideMenuUserName.textContent = userName;
-                    sideMenuUserProfile.style.display = 'flex';
-                    
-                    // Update avatar
-                    if (profilePictureRaw && profilePictureRaw !== 'null') {
-                        sideMenuUserAvatar.innerHTML = '<img src="' + profilePictureRaw + '" alt="Profile picture">';
-                    } else {
-                        const initials = userName.charAt(0).toUpperCase();
-                        sideMenuUserAvatar.textContent = initials;
-                    }
-                } catch (error) {
-                    usernameDisplay.style.display = 'none';
-                    sideMenuUserProfile.style.display = 'none';
+                const userName = currentUser.username || currentUser.name || 'User';
+                usernameDisplay.textContent = userName;
+                usernameDisplay.style.display = 'block';
+                
+                // Update side menu user profile
+                sideMenuUserName.textContent = userName;
+                sideMenuUserProfile.style.display = 'flex';
+                
+                // Update avatar
+                const profilePictureRaw = localStorage.getItem('quickstrike_profile_picture');
+                if (profilePictureRaw && profilePictureRaw !== 'null') {
+                    sideMenuUserAvatar.innerHTML = '<img src="' + profilePictureRaw + '" alt="Profile picture">';
+                } else {
+                    const initials = userName.charAt(0).toUpperCase();
+                    sideMenuUserAvatar.textContent = initials;
                 }
             } else {
                 loginButton.style.display = '';
@@ -754,10 +981,6 @@
 
         function handleLogin() {
             window.location.href = loginPageUrl;
-        }
-
-        function handleContact() {
-            window.location.href = contactPageUrl;
         }
 
         function openSideMenu() {
@@ -778,7 +1001,6 @@
                 closeSideMenu();
                 return;
             }
-
             openSideMenu();
         }
 
@@ -859,49 +1081,24 @@
             }
         });
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeSideMenu();
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeUser();
+            renderGameTabs();
+            renderStarRating();
+            loadReviews();
+            
+            const formElement = document.getElementById('reviewFormElement');
+            if (formElement) {
+                formElement.addEventListener('submit', handleSubmitReview);
             }
-        });
 
-        // Feature boxes click handlers
-        document.querySelectorAll('.feature-box').forEach(box => {
-            box.addEventListener('click', function() {
-                const title = this.querySelector('h3').textContent;
-                if (title.trim() === 'Mini - Games') {
-                    window.location.href = miniGamesPageUrl;
-                    return;
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeSideMenu();
                 }
-                if (title.trim() === 'Track Your Progress') {
-                    const currentUserRaw = localStorage.getItem('quickstrike_current_user');
-                    const hasCurrentUser = currentUserRaw && currentUserRaw !== 'null';
-
-                    if (!hasCurrentUser) {
-                        showTrackAccessPopup();
-                        return;
-                    }
-
-                    window.location.href = trackProgressPageUrl;
-                    return;
-                }
-                if (title.trim() === 'Leaderboard') {
-                    window.location.href = leaderboardPageUrl;
-                    return;
-                }
-                if (title.trim() === 'Guides') {
-                    window.location.href = guidesPageUrl;
-                    return;
-                }
-                if (title.trim() === 'Reviews') {
-                    window.location.href = reviewsPageUrl;
-                    return;
-                }
-                alert('Opening ' + title + '...');
             });
         });
-
-        updateAuthButtonsVisibility();
     </script>
 </body>
 </html>
