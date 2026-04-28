@@ -567,6 +567,20 @@
         let currentDifficulty = normalizeDifficulty(difficultyFromQuery);
         let currentSort = normalizeSort(sortFromQuery);
 
+        function canonicalizeGameKey(name) {
+            const normalized = normalizeGameName(name);
+
+            if (normalized === 'shape-match-hue') {
+                return 'jungle-rush';
+            }
+
+            if (normalized === 'test-game') {
+                return null;
+            }
+
+            return normalized;
+        }
+
         function normalizeGameName(name) {
             return String(name || '')
                 .trim()
@@ -604,11 +618,94 @@
             return minutes + 'm ' + seconds.toString().padStart(2, '0') + 's';
         }
 
+        function mergePlayerSummaries(existingPlayer, incomingPlayer) {
+            const numericFields = ['highest_score', 'highest_accuracy', 'longest_played_ms', 'fastest_reaction_ms', 'highest_combo', 'best_hits', 'fastest_solve_time_ms'];
+            const mergedPlayer = {
+                player_name: existingPlayer.player_name || incomingPlayer.player_name || 'Unknown Player',
+                sessions_played: (existingPlayer.sessions_played ?? 0) + (incomingPlayer.sessions_played ?? 0),
+            };
+
+            numericFields.forEach((field) => {
+                const leftValue = existingPlayer[field];
+                const rightValue = incomingPlayer[field];
+
+                if (field === 'fastest_reaction_ms' || field === 'fastest_solve_time_ms') {
+                    const candidates = [leftValue, rightValue].filter((value) => value !== null && value !== undefined && !Number.isNaN(Number(value)));
+                    mergedPlayer[field] = candidates.length ? Math.min(...candidates.map((value) => Number(value))) : null;
+                    return;
+                }
+
+                if (field === 'highest_accuracy') {
+                    const candidates = [leftValue, rightValue].filter((value) => value !== null && value !== undefined && !Number.isNaN(Number(value)));
+                    mergedPlayer[field] = candidates.length ? Math.max(...candidates.map((value) => Number(value))) : null;
+                    return;
+                }
+
+                const leftNumeric = Number.isFinite(Number(leftValue)) ? Number(leftValue) : null;
+                const rightNumeric = Number.isFinite(Number(rightValue)) ? Number(rightValue) : null;
+
+                if (leftNumeric === null && rightNumeric === null) {
+                    mergedPlayer[field] = null;
+                } else {
+                    mergedPlayer[field] = Math.max(leftNumeric ?? 0, rightNumeric ?? 0);
+                }
+            });
+
+            if (mergedPlayer.highest_score === null) {
+                mergedPlayer.highest_score = 0;
+            }
+
+            return mergedPlayer;
+        }
+
+        function consolidateGameEntries(games) {
+            const mergedGames = new Map();
+
+            games.forEach((game) => {
+                const canonicalKey = canonicalizeGameKey(game.game_name);
+
+                if (!canonicalKey) {
+                    return;
+                }
+
+                const existingGame = mergedGames.get(canonicalKey);
+                const incomingPlayers = Array.isArray(game.players) ? game.players : [];
+
+                if (!existingGame) {
+                    mergedGames.set(canonicalKey, {
+                        ...game,
+                        game_name: canonicalKey,
+                        players: incomingPlayers.map((player) => ({ ...player })),
+                    });
+                    return;
+                }
+
+                const playerIndex = new Map(
+                    existingGame.players.map((player, index) => [String(player.player_name || 'Unknown Player'), index])
+                );
+
+                incomingPlayers.forEach((incomingPlayer) => {
+                    const playerName = String(incomingPlayer.player_name || 'Unknown Player');
+                    const existingIndex = playerIndex.get(playerName);
+
+                    if (existingIndex === undefined) {
+                        existingGame.players.push({ ...incomingPlayer });
+                        playerIndex.set(playerName, existingGame.players.length - 1);
+                        return;
+                    }
+
+                    existingGame.players[existingIndex] = mergePlayerSummaries(existingGame.players[existingIndex], incomingPlayer);
+                });
+            });
+
+            return sortGamesByFixedOrder(Array.from(mergedGames.values()));
+        }
+
         function sortGamesByFixedOrder(games) {
             const fallbackIndex = gameOrder.length + 10;
             return [...games].sort((left, right) => {
-                const leftKey = normalizeGameName(left.game_name);
-                const rightKey = normalizeGameName(right.game_name);
+                const leftKey = canonicalizeGameKey(left.game_name) || '';
+                const rightKey = canonicalizeGameKey(right.game_name) || '';
                 const leftIndex = gameOrder.indexOf(leftKey);
                 const rightIndex = gameOrder.indexOf(rightKey);
                 const normalizedLeft = leftIndex === -1 ? fallbackIndex : leftIndex;
@@ -661,9 +758,9 @@
         function renderTabs(games, activeGame) {
             const tabsRoot = document.getElementById('gameTabs');
             tabsRoot.innerHTML = games.map((game) => {
-                const gameKey = normalizeGameName(game.game_name);
+                const gameKey = canonicalizeGameKey(game.game_name) || normalizeGameName(game.game_name);
                 const isActive = gameKey === activeGame;
-                return '<button type="button" class="game-tab' + (isActive ? ' active' : '') + '" data-game="' + gameKey + '">' + toTitleCase(game.game_name) + '</button>';
+                return '<button type="button" class="game-tab' + (isActive ? ' active' : '') + '" data-game="' + gameKey + '">' + toTitleCase(gameKey) + '</button>';
             }).join('');
 
             tabsRoot.querySelectorAll('.game-tab').forEach((button) => {
@@ -824,7 +921,7 @@
 
                 const payload = await response.json();
                 const apiGames = Array.isArray(payload.data) ? payload.data : [];
-                const games = sortGamesByFixedOrder(apiGames);
+                const games = consolidateGameEntries(apiGames);
 
                 if (!games.length) {
                     board.textContent = 'No leaderboard data yet. Play sessions to start ranking players.';
@@ -832,9 +929,9 @@
                     return;
                 }
 
-                const preferred = normalizeGameName(activeGameOverride || currentGame);
-                const fallback = normalizeGameName(games[0].game_name);
-                const activeGame = games.some((game) => normalizeGameName(game.game_name) === preferred)
+                const preferred = canonicalizeGameKey(activeGameOverride || currentGame) || normalizeGameName(activeGameOverride || currentGame);
+                const fallback = canonicalizeGameKey(games[0].game_name) || normalizeGameName(games[0].game_name);
+                const activeGame = games.some((game) => (canonicalizeGameKey(game.game_name) || normalizeGameName(game.game_name)) === preferred)
                     ? preferred
                     : fallback;
 
@@ -842,7 +939,7 @@
                 updateUrlState();
                 updateFilterVisibility(activeGame);
                 renderTabs(games, activeGame);
-                const selectedGame = games.find((game) => normalizeGameName(game.game_name) === activeGame) || games[0];
+                const selectedGame = games.find((game) => (canonicalizeGameKey(game.game_name) || normalizeGameName(game.game_name)) === activeGame) || games[0];
                 renderTable(selectedGame);
             } catch (error) {
                 board.className = 'empty-state';
