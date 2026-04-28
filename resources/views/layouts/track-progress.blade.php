@@ -771,15 +771,15 @@
         <p class="subtitle">Choose a game below to view your latest stats and improvement progress.</p>
 
         <div class="game-tabs" role="tablist" aria-label="Games">
-            <button type="button" class="game-tab active" data-game="shape-match-hue" data-game-name="ShapeMatch Hue">ShapeMatch Hue</button>
+            <button type="button" class="game-tab active" data-game="jungle-rush" data-game-name="Jungle Rush">Jungle Rush</button>
             <button type="button" class="game-tab" data-game="rapid-tiles" data-game-name="Rapid Tiles">Rapid Tiles</button>
             <button type="button" class="game-tab" data-game="monkey-ball" data-game-name="MonkeyBall">MonkeyBall</button>
             <button type="button" class="game-tab" data-game="math-quest" data-game-name="Math Quest">Math Quest</button>
         </div>
 
         <section class="panel-wrap">
-            <article class="panel active" data-panel="shape-match-hue">
-                <h2>ShapeMatch Hue</h2>
+            <article class="panel active" data-panel="jungle-rush">
+                <h2>Jungle Rush</h2>
                 <p>Color and shape matching accuracy over your recent sessions.</p>
                 <div class="stats-grid">
                     <div class="stat-card">
@@ -1465,7 +1465,7 @@
             const firstParts = [`Score ${formatAvg(firstScore, 1)}`];
             const otherParts = [`Score ${formatAvg(otherScore, 1)}`];
 
-            if (panelKey === 'shape-match-hue' || panelKey === 'math-quest' || panelKey === 'monkey-ball') {
+            if (panelKey === 'jungle-rush' || panelKey === 'math-quest' || panelKey === 'monkey-ball') {
                 const firstAcc = averageFromSessions(firstThree, percentFromSession);
                 const otherAcc = averageFromSessions(otherThree, percentFromSession);
                 if (firstAcc !== null && otherAcc !== null) {
@@ -2001,12 +2001,12 @@
             });
         }
 
-        function buildShapeMatchHueStats(sessions) {
+        function buildJungleRushStats(sessions) {
             const accuracies = sessions.map(percentFromSession).filter((value) => value !== null);
             const avgReactionValues = sessions
                 .map((session) => toNumber(session.avg_reaction_time_ms))
                 .filter((value) => value !== null);
-            const improvement = calculateImprovementByThree('shape-match-hue', sessions);
+            const improvement = calculateImprovementByThree('jungle-rush', sessions);
 
             return {
                 primary: accuracies.length ? Math.round(Math.max(...accuracies)) + '%' : '--',
@@ -2014,9 +2014,9 @@
                 sessions: sessions.length,
                 improvement: improvement.bar,
                 improvementText: improvement.text,
-                note: sessions.length ? 'Live data from your saved ShapeMatch Hue sessions.' : 'No sessions recorded yet for this game.',
-                monkeyDifficultyBreakdownHtml: buildMonkeyDifficultyBreakdownHtml(sessions, 'shape-match-hue'),
-                monkeyDifficultyImprovementHtml: buildMonkeyDifficultyImprovementHtml(sessions, 'shape-match-hue'),
+                note: sessions.length ? 'Live data from your saved Jungle Rush sessions.' : 'No sessions recorded yet for this game.',
+                monkeyDifficultyBreakdownHtml: buildMonkeyDifficultyBreakdownHtml(sessions, 'jungle-rush'),
+                monkeyDifficultyImprovementHtml: buildMonkeyDifficultyImprovementHtml(sessions, 'jungle-rush'),
                 monkeyImprovementGraphHtml: buildAllDifficultiesImprovementGraphHtml(sessions),
             };
         }
@@ -2085,8 +2085,8 @@
         }
 
         function buildStatsByPanel(panelKey, sessions) {
-            if (panelKey === 'shape-match-hue') {
-                return buildShapeMatchHueStats(sessions);
+            if (panelKey === 'jungle-rush') {
+                return buildJungleRushStats(sessions);
             }
 
             if (panelKey === 'rapid-tiles') {

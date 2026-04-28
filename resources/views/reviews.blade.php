@@ -794,8 +794,8 @@
         const profilePageUrl = {{ Js::from(route('profile')) }};
         const reviewsApiUrl = {{ Js::from(route('api.reviews.index', ['gameName' => 'GAME'])) }}.replace('GAME', '');
         const storeReviewApiUrl = {{ Js::from(route('api.reviews.store')) }};
-        const gameOrder = ['shape-match-hue', 'rapid-tiles', 'monkey-ball', 'math-quest'];
-        let currentGame = 'shape-match-hue';
+        const gameOrder = ['jungle-rush', 'rapid-tiles', 'monkey-ball', 'math-quest'];
+        let currentGame = 'jungle-rush';
         let selectedRating = 0;
         let currentUser = null;
 

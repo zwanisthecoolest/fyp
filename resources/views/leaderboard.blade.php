@@ -562,7 +562,7 @@
         const selectedFromQuery = queryParams.get('game');
         const difficultyFromQuery = queryParams.get('difficulty');
         const sortFromQuery = queryParams.get('sort');
-        const gameOrder = ['shape-match-hue', 'rapid-tiles', 'monkey-ball', 'math-quest'];
+        const gameOrder = ['jungle-rush', 'rapid-tiles', 'monkey-ball', 'math-quest'];
         let currentGame = normalizeGameName(selectedFromQuery);
         let currentDifficulty = normalizeDifficulty(difficultyFromQuery);
         let currentSort = normalizeSort(sortFromQuery);
@@ -627,18 +627,18 @@
             const highestComboBtn = document.getElementById('highestComboBtn');
             const longestPlayedBtn = document.getElementById('longestPlayedBtn');
             const fastestSolveBtn = document.getElementById('fastestSolveBtn');
-            const isShapeMatchHue = gameKey === 'shape-match-hue';
+            const isJungleRush = gameKey === 'jungle-rush';
             const isRapidTiles = gameKey === 'rapid-tiles';
             const isMonkeyBall = gameKey === 'monkey-ball';
             const isMathQuest = gameKey === 'math-quest';
             
-            fastestReactionBtn.style.display = isShapeMatchHue ? '' : 'none';
+            fastestReactionBtn.style.display = isJungleRush ? '' : 'none';
             highestComboBtn.style.display = isRapidTiles ? '' : 'none';
             longestPlayedBtn.style.display = isMonkeyBall ? '' : 'none';
             fastestSolveBtn.style.display = isMathQuest ? '' : 'none';
             
-            // If fastest_reaction is selected but game is not ShapeMatch Hue, reset to highest_score
-            if (!isShapeMatchHue && currentSort === 'fastest_reaction') {
+            // If fastest_reaction is selected but game is not Jungle Rush, reset to highest_score
+            if (!isJungleRush && currentSort === 'fastest_reaction') {
                 currentSort = 'highest_score';
             }
             
@@ -733,7 +733,7 @@
             const board = document.getElementById('boardContent');
             const players = game.players || [];
             const gameName = normalizeGameName(game.game_name);
-            const isShapeMatchHue = gameName === 'shape-match-hue';
+            const isJungleRush = gameName === 'jungle-rush';
             const isRapidTiles = gameName === 'rapid-tiles';
             const isMonkeyBall = gameName === 'monkey-ball';
             const isMathQuest = gameName === 'math-quest';
@@ -750,7 +750,7 @@
                     : Number(player.highest_accuracy).toFixed(1) + '%';
 
                 let fifthColumn = '';
-                if (isShapeMatchHue) {
+                if (isJungleRush) {
                     fifthColumn = player.fastest_reaction_ms !== null && player.fastest_reaction_ms !== undefined
                         ? player.fastest_reaction_ms + 'ms'
                         : '--';
@@ -779,7 +779,7 @@
             }).join('');
 
             let fifthColumnHeader = 'Longest Played';
-            if (isShapeMatchHue) {
+            if (isJungleRush) {
                 fifthColumnHeader = 'Fastest Reaction';
             } else if (isRapidTiles) {
                 fifthColumnHeader = 'Highest Combo';

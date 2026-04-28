@@ -502,13 +502,13 @@
         </div>
 
         <div class="games-grid">
-            <!-- ShapeMatch Hue -->
+            <!-- Jungle Rush -->
             <div class="game-card">
-                <div class="game-title">ShapeMatch Hue</div>
+                <div class="game-title">Jungle Rush</div>
                 <div class="game-purpose">
-                    Test your color and shape matching accuracy. Quickly identify and match shapes with corresponding colors in increasingly complex patterns.
+                    Navigate through the jungle and react quickly to match animals and colors. Test your reflexes and accuracy as animals rush across the screen.
                 </div>
-                <img class="game-preview" src="{{ asset('images/games/shape-hue-cover.png') }}" alt="ShapeMatch Hue tutorial preview">
+                <img class=\"game-preview\" src=\"{{ asset('images/games/jungle-rush-cover.png') }}\" alt=\"Jungle Rush tutorial preview\">
                 <div class="difficulties-section">
                     <div class="difficulties-label">Difficulties</div>
                     <div class="difficulty-badges">
@@ -517,7 +517,7 @@
                         <span class="difficulty-badge hard">Hard</span>
                     </div>
                 </div>
-                <button class="play-button" onclick="navigateToLeaderboard('shape-match-hue')">View Leaderboard</button>
+                <button class="play-button" onclick="navigateToLeaderboard('jungle-rush')">View Leaderboard</button>
             </div>
 
             <!-- Rapid Tiles -->
