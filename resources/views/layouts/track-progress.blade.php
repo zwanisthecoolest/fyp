@@ -1371,7 +1371,60 @@
         const graphDifficultyByPanel = new Map();
         const graphMetricsByPanel = new Map();
         const currentUserRaw = localStorage.getItem('quickstrike_current_user');
-        const currentUser = currentUserRaw && currentUserRaw !== 'null' ? JSON.parse(currentUserRaw) : null;
+        let currentUser = null;
+
+        try {
+            currentUser = currentUserRaw && currentUserRaw !== 'null' ? JSON.parse(currentUserRaw) : null;
+        } catch (error) {
+            currentUser = null;
+        }
+
+        function getCurrentUserSessionFilters() {
+            if (!currentUser || typeof currentUser !== 'object') {
+                return [];
+            }
+
+            const filters = [];
+            const playerId = String(currentUser.playerId || currentUser.player_id || '').trim();
+            const userId = String(currentUser.userId || currentUser.user_id || '').trim();
+            const username = String(currentUser.username || currentUser.name || '').trim();
+
+            if (playerId) {
+                filters.push({ key: 'source_player_id', value: playerId });
+            }
+
+            if (userId) {
+                filters.push({ key: 'user_id', value: userId });
+            }
+
+            if (username) {
+                filters.push({ key: 'player_name', value: username });
+            }
+
+            return filters;
+        }
+
+        function mergeUniqueSessions(sessionGroups) {
+            const merged = new Map();
+
+            sessionGroups.flat().forEach((session) => {
+                if (!session || typeof session !== 'object') {
+                    return;
+                }
+
+                const sessionKey = session.id !== undefined && session.id !== null
+                    ? 'id:' + String(session.id)
+                    : [session.game_name, session.player_name, session.created_at, session.score, session.user_id, session.meta && session.meta.source_player_id]
+                        .map((value) => String(value ?? ''))
+                        .join('|');
+
+                if (!merged.has(sessionKey)) {
+                    merged.set(sessionKey, session);
+                }
+            });
+
+            return Array.from(merged.values());
+        }
 
         function defaultGraphMetrics() {
             return {
@@ -2101,31 +2154,48 @@
         }
 
         async function fetchSessionsByGame(gameName) {
-            const params = new URLSearchParams();
-            params.set('game_name', gameName);
-            params.set('limit', '100');
+            const filters = getCurrentUserSessionFilters();
 
-            if (currentUser && currentUser.playerId) {
-                params.set('source_player_id', String(currentUser.playerId));
-            } else if (currentUser && currentUser.userId) {
-                params.set('user_id', String(currentUser.userId));
-            } else if (currentUser && (currentUser.username || currentUser.name)) {
-                params.set('player_name', String(currentUser.username || currentUser.name));
+            if (!filters.length) {
+                const params = new URLSearchParams();
+                params.set('game_name', gameName);
+                params.set('limit', '100');
+
+                const response = await fetch(reactionSessionsApiUrl + '?' + params.toString(), {
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch sessions for ' + gameName);
+                }
+
+                const payload = await response.json();
+                return Array.isArray(payload.data) ? payload.data : [];
             }
 
-            const url = reactionSessionsApiUrl + '?' + params.toString();
-            const response = await fetch(url, {
-                headers: {
-                    Accept: 'application/json',
-                },
-            });
+            const responseGroups = await Promise.all(filters.map(async (filter) => {
+                const params = new URLSearchParams();
+                params.set('game_name', gameName);
+                params.set('limit', '100');
+                params.set(filter.key, filter.value);
 
-            if (!response.ok) {
-                throw new Error('Failed to fetch sessions for ' + gameName);
-            }
+                const response = await fetch(reactionSessionsApiUrl + '?' + params.toString(), {
+                    headers: {
+                        Accept: 'application/json',
+                    },
+                });
 
-            const payload = await response.json();
-            return Array.isArray(payload.data) ? payload.data : [];
+                if (!response.ok) {
+                    throw new Error('Failed to fetch sessions for ' + gameName);
+                }
+
+                const payload = await response.json();
+                return Array.isArray(payload.data) ? payload.data : [];
+            }));
+
+            return mergeUniqueSessions(responseGroups);
         }
 
         async function loadPanelStats(panelKey, gameName) {
