@@ -2157,22 +2157,7 @@
             const filters = getCurrentUserSessionFilters();
 
             if (!filters.length) {
-                const params = new URLSearchParams();
-                params.set('game_name', gameName);
-                params.set('limit', '100');
-
-                const response = await fetch(reactionSessionsApiUrl + '?' + params.toString(), {
-                    headers: {
-                        Accept: 'application/json',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch sessions for ' + gameName);
-                }
-
-                const payload = await response.json();
-                return Array.isArray(payload.data) ? payload.data : [];
+                return [];
             }
 
             const responseGroups = await Promise.all(filters.map(async (filter) => {
