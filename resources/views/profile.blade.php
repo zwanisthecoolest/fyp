@@ -1172,8 +1172,8 @@
                 params.set('source_player_id', String(currentUser.playerId));
             } else if (currentUser.userId) {
                 params.set('user_id', String(currentUser.userId));
-            } else if (currentUser.username || currentUser.name) {
-                params.set('player_name', String(currentUser.username || currentUser.name));
+            } else {
+                return [];
             }
 
             const response = await fetch(reactionSessionsApiUrl + '?' + params.toString(), {

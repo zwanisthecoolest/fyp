@@ -19,6 +19,13 @@ class ReactionSessionController extends Controller
             'limit' => ['nullable', 'integer', 'min:1', 'max:200'],
         ]);
 
+        // Require at least one user-specific filter to prevent leaking all sessions
+        if (!isset($validated['user_id']) && !isset($validated['source_player_id']) && !isset($validated['player_name'])) {
+            return response()->json([
+                'data' => [],
+            ]);
+        }
+
         $limit = $validated['limit'] ?? 50;
 
         $sessions = ReactionSession::query()

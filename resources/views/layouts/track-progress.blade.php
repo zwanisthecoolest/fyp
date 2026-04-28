@@ -1397,10 +1397,6 @@
                 filters.push({ key: 'user_id', value: userId });
             }
 
-            if (username) {
-                filters.push({ key: 'player_name', value: username });
-            }
-
             return filters;
         }
 
