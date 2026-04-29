@@ -186,16 +186,16 @@
         .difficulty-breakdown {
             margin-top: 16px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
         }
 
         .difficulty-card {
             background: linear-gradient(160deg, #f7fdf9 0%, #eef9f3 100%);
             border: 1px solid #cfe9dc;
             border-radius: 10px;
-            padding: 14px;
-            min-height: 170px;
+            padding: 12px;
+            min-height: 150px;
             box-shadow: 0 6px 14px rgba(24, 78, 73, 0.08);
             transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
