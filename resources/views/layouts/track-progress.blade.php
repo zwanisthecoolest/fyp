@@ -782,19 +782,17 @@
                 <h2>Jungle Rush</h2>
                 <p>Color and shape matching accuracy over your recent sessions.</p>
                 <div class="stats-grid">
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-label">Best Accuracy</div>
-                            <div class="stat-value" data-stat="primary">{{ isset($stats['Jungle Rush']['best_accuracy']) ? $stats['Jungle Rush']['best_accuracy'].'%' : '--' }}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Avg Reaction</div>
-                            <div class="stat-value" data-stat="secondary">{{ isset($stats['Jungle Rush']['avg_reaction']) ? $stats['Jungle Rush']['avg_reaction'].' ms' : '--' }}</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Sessions Played</div>
-                            <div class="stat-value" data-stat="sessions">{{ $stats['Jungle Rush']['sessions'] ?? 0 }}</div>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Best Accuracy</div>
+                        <div class="stat-value" data-stat="primary">{{ isset($stats['Jungle Rush']['best_accuracy']) ? $stats['Jungle Rush']['best_accuracy'].'%' : '--' }}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Avg Reaction</div>
+                        <div class="stat-value" data-stat="secondary">{{ isset($stats['Jungle Rush']['avg_reaction']) ? $stats['Jungle Rush']['avg_reaction'].' ms' : '--' }}</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Sessions Played</div>
+                        <div class="stat-value" data-stat="sessions">{{ $stats['Jungle Rush']['sessions'] ?? 0 }}</div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Easy</div>
