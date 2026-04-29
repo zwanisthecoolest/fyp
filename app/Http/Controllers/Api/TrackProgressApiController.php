@@ -28,7 +28,16 @@ class TrackProgressApiController extends Controller
         $sessions = DB::table('reaction_sessions')
             ->where('user_id', $user->id)
             ->when(isset($validated['game_name']), function ($query) use ($validated) {
-                $query->where('game_name', $validated['game_name']);
+                // Map frontend game names to DB values
+                $gameName = $validated['game_name'];
+                $mappedName = match (strtolower($gameName)) {
+                    'jungle rush' => 'ShapeMatch Hue',
+                    'rapid tiles' => 'Rapid Tiles',
+                    'monkeyball', 'monkey ball' => 'MonkeyBall',
+                    'math quest' => 'Math Quest',
+                    default => $gameName,
+                };
+                $query->where('game_name', $mappedName);
             })
             ->latest()
             ->limit($limit)

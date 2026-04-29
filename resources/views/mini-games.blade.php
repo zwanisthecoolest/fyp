@@ -508,7 +508,7 @@
                 <div class="game-purpose">
                     Navigate through the jungle and react quickly to match animals and colors. Test your reflexes and accuracy as animals rush across the screen.
                 </div>
-                <img class=\"game-preview\" src=\"{{ asset('images/games/jungle-rush-cover.png') }}\" alt=\"Jungle Rush tutorial preview\">
+                <img class="game-preview" src="{{ asset('images/games/jungle-rush-cover.png') }}" alt="Jungle Rush tutorial preview">
                 <div class="difficulties-section">
                     <div class="difficulties-label">Difficulties</div>
                     <div class="difficulty-badges">
