@@ -11,7 +11,7 @@ Route::get('/reaction-sessions', [ReactionSessionController::class, 'index'])->n
 Route::post('/reaction-sessions', [ReactionSessionController::class, 'store'])->name('api.reaction-sessions.store');
 Route::post('/python-player-login', [PythonPlayerAuthController::class, 'login'])->name('api.python-login');
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('api.leaderboard.index');
-Route::get('/track-progress', [TrackProgressApiController::class, 'index'])->name('api.track-progress.index')->middleware('auth');
+Route::get('/track-progress', [TrackProgressApiController::class, 'index'])->name('api.track-progress.index');
 Route::get('/reviews/{gameName}', [ReviewController::class, 'index'])->name('api.reviews.index');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('api.reviews.store');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('api.reviews.destroy');
