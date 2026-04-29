@@ -782,51 +782,51 @@
                 <h2>Jungle Rush</h2>
                 <p>Color and shape matching accuracy over your recent sessions.</p>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-label">Best Accuracy</div>
-                        <div class="stat-value" data-stat="primary">--</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Best Accuracy</div>
+                            <div class="stat-value" data-stat="primary">{{ isset($stats['Jungle Rush']['best_accuracy']) ? $stats['Jungle Rush']['best_accuracy'].'%' : '--' }}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Avg Reaction</div>
+                            <div class="stat-value" data-stat="secondary">{{ isset($stats['Jungle Rush']['avg_reaction']) ? $stats['Jungle Rush']['avg_reaction'].' ms' : '--' }}</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Sessions Played</div>
+                            <div class="stat-value" data-stat="sessions">{{ $stats['Jungle Rush']['sessions'] ?? 0 }}</div>
+                        </div>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Avg Reaction</div>
-                        <div class="stat-value" data-stat="secondary">--</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label">Sessions Played</div>
-                        <div class="stat-value" data-stat="sessions">--</div>
-                    </div>
-                </div>
-                <div class="difficulty-breakdown" data-monkey-difficulty-breakdown>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Easy</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Jungle Rush']['difficulty']['easy']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Jungle Rush']['difficulty']['easy']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Jungle Rush']['difficulty']['easy']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Jungle Rush']['difficulty']['easy']['avg_accuracy']) ? $stats['Jungle Rush']['difficulty']['easy']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Jungle Rush']['difficulty']['easy']['avg_reaction']) ? $stats['Jungle Rush']['difficulty']['easy']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Normal</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Jungle Rush']['difficulty']['normal']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Jungle Rush']['difficulty']['normal']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Jungle Rush']['difficulty']['normal']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Jungle Rush']['difficulty']['normal']['avg_accuracy']) ? $stats['Jungle Rush']['difficulty']['normal']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Jungle Rush']['difficulty']['normal']['avg_reaction']) ? $stats['Jungle Rush']['difficulty']['normal']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Hard</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Jungle Rush']['difficulty']['hard']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Jungle Rush']['difficulty']['hard']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Jungle Rush']['difficulty']['hard']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Jungle Rush']['difficulty']['hard']['avg_accuracy']) ? $stats['Jungle Rush']['difficulty']['hard']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Jungle Rush']['difficulty']['hard']['avg_reaction']) ? $stats['Jungle Rush']['difficulty']['hard']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card total">
                         <div class="difficulty-title">All Difficulties</div>
-                        <div class="difficulty-line">Total Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Average Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Total Sessions: <strong>{{ $stats['Jungle Rush']['difficulty']['all']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Jungle Rush']['difficulty']['all']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Average Score: <strong>{{ $stats['Jungle Rush']['difficulty']['all']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Jungle Rush']['difficulty']['all']['avg_accuracy']) ? $stats['Jungle Rush']['difficulty']['all']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Jungle Rush']['difficulty']['all']['avg_reaction']) ? $stats['Jungle Rush']['difficulty']['all']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                 </div>
                 <div class="difficulty-improvements" data-monkey-difficulty-improvements>
@@ -922,49 +922,49 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">Top Score</div>
-                        <div class="stat-value" data-stat="primary">--</div>
+                        <div class="stat-value" data-stat="primary">{{ $stats['Rapid Tiles']['best_score'] ?? '--' }}</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Best Combo</div>
-                        <div class="stat-value" data-stat="secondary">--</div>
+                        <div class="stat-label">Avg Reaction</div>
+                        <div class="stat-value" data-stat="secondary">{{ isset($stats['Rapid Tiles']['avg_reaction']) ? $stats['Rapid Tiles']['avg_reaction'].' ms' : '--' }}</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Sessions Played</div>
-                        <div class="stat-value" data-stat="sessions">--</div>
+                        <div class="stat-value" data-stat="sessions">{{ $stats['Rapid Tiles']['sessions'] ?? 0 }}</div>
                     </div>
                 </div>
                 <div class="difficulty-breakdown" data-monkey-difficulty-breakdown>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Easy</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Rapid Tiles']['difficulty']['easy']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['easy']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['easy']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['easy']['avg_accuracy']) ? $stats['Rapid Tiles']['difficulty']['easy']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['easy']['avg_reaction']) ? $stats['Rapid Tiles']['difficulty']['easy']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Normal</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Rapid Tiles']['difficulty']['normal']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['normal']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['normal']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['normal']['avg_accuracy']) ? $stats['Rapid Tiles']['difficulty']['normal']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['normal']['avg_reaction']) ? $stats['Rapid Tiles']['difficulty']['normal']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Hard</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Rapid Tiles']['difficulty']['hard']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['hard']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['hard']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['hard']['avg_accuracy']) ? $stats['Rapid Tiles']['difficulty']['hard']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['hard']['avg_reaction']) ? $stats['Rapid Tiles']['difficulty']['hard']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card total">
                         <div class="difficulty-title">All Difficulties</div>
-                        <div class="difficulty-line">Total Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Average Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Total Sessions: <strong>{{ $stats['Rapid Tiles']['difficulty']['all']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['all']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Average Score: <strong>{{ $stats['Rapid Tiles']['difficulty']['all']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['all']['avg_accuracy']) ? $stats['Rapid Tiles']['difficulty']['all']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Rapid Tiles']['difficulty']['all']['avg_reaction']) ? $stats['Rapid Tiles']['difficulty']['all']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                 </div>
                 <div class="difficulty-improvements" data-monkey-difficulty-improvements>
@@ -1060,49 +1060,49 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">Longest Time</div>
-                        <div class="stat-value" data-stat="primary">--</div>
+                        <div class="stat-value" data-stat="primary">{{ isset($stats['MonkeyBall']['best_duration_ms']) ? round($stats['MonkeyBall']['best_duration_ms']/1000).'s' : '--' }}</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Best Rank</div>
-                        <div class="stat-value" data-stat="secondary">--</div>
+                        <div class="stat-label">Avg Reaction</div>
+                        <div class="stat-value" data-stat="secondary">{{ isset($stats['MonkeyBall']['avg_reaction']) ? $stats['MonkeyBall']['avg_reaction'].' ms' : '--' }}</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Sessions Played</div>
-                        <div class="stat-value" data-stat="sessions">--</div>
+                        <div class="stat-value" data-stat="sessions">{{ $stats['MonkeyBall']['sessions'] ?? 0 }}</div>
                     </div>
                 </div>
                 <div class="difficulty-breakdown" data-monkey-difficulty-breakdown>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Easy</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['MonkeyBall']['difficulty']['easy']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['MonkeyBall']['difficulty']['easy']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['MonkeyBall']['difficulty']['easy']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['MonkeyBall']['difficulty']['easy']['avg_accuracy']) ? $stats['MonkeyBall']['difficulty']['easy']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['MonkeyBall']['difficulty']['easy']['avg_reaction']) ? $stats['MonkeyBall']['difficulty']['easy']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Normal</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['MonkeyBall']['difficulty']['normal']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['MonkeyBall']['difficulty']['normal']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['MonkeyBall']['difficulty']['normal']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['MonkeyBall']['difficulty']['normal']['avg_accuracy']) ? $stats['MonkeyBall']['difficulty']['normal']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['MonkeyBall']['difficulty']['normal']['avg_reaction']) ? $stats['MonkeyBall']['difficulty']['normal']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Hard</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['MonkeyBall']['difficulty']['hard']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['MonkeyBall']['difficulty']['hard']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['MonkeyBall']['difficulty']['hard']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['MonkeyBall']['difficulty']['hard']['avg_accuracy']) ? $stats['MonkeyBall']['difficulty']['hard']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['MonkeyBall']['difficulty']['hard']['avg_reaction']) ? $stats['MonkeyBall']['difficulty']['hard']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card total">
                         <div class="difficulty-title">All Difficulties</div>
-                        <div class="difficulty-line">Total Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Average Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Total Sessions: <strong>{{ $stats['MonkeyBall']['difficulty']['all']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['MonkeyBall']['difficulty']['all']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Average Score: <strong>{{ $stats['MonkeyBall']['difficulty']['all']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['MonkeyBall']['difficulty']['all']['avg_accuracy']) ? $stats['MonkeyBall']['difficulty']['all']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['MonkeyBall']['difficulty']['all']['avg_reaction']) ? $stats['MonkeyBall']['difficulty']['all']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                 </div>
                 <div class="difficulty-improvements" data-monkey-difficulty-improvements>
@@ -1198,41 +1198,41 @@
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-label">Best Accuracy</div>
-                        <div class="stat-value" data-stat="primary">--</div>
+                        <div class="stat-value" data-stat="primary">{{ isset($stats['Math Quest']['best_accuracy']) ? $stats['Math Quest']['best_accuracy'].'%' : '--' }}</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Avg Solve Time</div>
-                        <div class="stat-value" data-stat="secondary">--</div>
+                        <div class="stat-value" data-stat="secondary">{{ isset($stats['Math Quest']['avg_reaction']) ? $stats['Math Quest']['avg_reaction'].' ms' : '--' }}</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-label">Sessions Played</div>
-                        <div class="stat-value" data-stat="sessions">--</div>
+                        <div class="stat-value" data-stat="sessions">{{ $stats['Math Quest']['sessions'] ?? 0 }}</div>
                     </div>
                 </div>
                 <div class="difficulty-breakdown" data-monkey-difficulty-breakdown>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Easy</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Math Quest']['difficulty']['easy']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Math Quest']['difficulty']['easy']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Math Quest']['difficulty']['easy']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Math Quest']['difficulty']['easy']['avg_accuracy']) ? $stats['Math Quest']['difficulty']['easy']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Math Quest']['difficulty']['easy']['avg_reaction']) ? $stats['Math Quest']['difficulty']['easy']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Normal</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Math Quest']['difficulty']['normal']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Math Quest']['difficulty']['normal']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Math Quest']['difficulty']['normal']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Math Quest']['difficulty']['normal']['avg_accuracy']) ? $stats['Math Quest']['difficulty']['normal']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Math Quest']['difficulty']['normal']['avg_reaction']) ? $stats['Math Quest']['difficulty']['normal']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Hard</div>
-                        <div class="difficulty-line">Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Sessions: <strong>{{ $stats['Math Quest']['difficulty']['hard']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Math Quest']['difficulty']['hard']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Avg Score: <strong>{{ $stats['Math Quest']['difficulty']['hard']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Math Quest']['difficulty']['hard']['avg_accuracy']) ? $stats['Math Quest']['difficulty']['hard']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Math Quest']['difficulty']['hard']['avg_reaction']) ? $stats['Math Quest']['difficulty']['hard']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                     <div class="difficulty-card">
                         <div class="difficulty-title">Extreme</div>
@@ -1244,11 +1244,11 @@
                     </div>
                     <div class="difficulty-card total">
                         <div class="difficulty-title">All Difficulties</div>
-                        <div class="difficulty-line">Total Sessions: <strong>--</strong></div>
-                        <div class="difficulty-line">Total Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Average Score: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Accuracy: <strong>--</strong></div>
-                        <div class="difficulty-line">Avg Reaction: <strong>--</strong></div>
+                        <div class="difficulty-line">Total Sessions: <strong>{{ $stats['Math Quest']['difficulty']['all']['sessions'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Total Score: <strong>{{ $stats['Math Quest']['difficulty']['all']['total_score'] ?? 0 }}</strong></div>
+                        <div class="difficulty-line">Average Score: <strong>{{ $stats['Math Quest']['difficulty']['all']['avg_score'] ?? '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Accuracy: <strong>{{ isset($stats['Math Quest']['difficulty']['all']['avg_accuracy']) ? $stats['Math Quest']['difficulty']['all']['avg_accuracy'].'%' : '--' }}</strong></div>
+                        <div class="difficulty-line">Avg Reaction: <strong>{{ isset($stats['Math Quest']['difficulty']['all']['avg_reaction']) ? $stats['Math Quest']['difficulty']['all']['avg_reaction'].' ms' : '--' }}</strong></div>
                     </div>
                 </div>
                 <div class="difficulty-improvements" data-monkey-difficulty-improvements>
