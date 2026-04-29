@@ -190,6 +190,13 @@
             gap: 12px;
         }
 
+        @media (min-width: 1200px) {
+            .difficulty-breakdown {
+                grid-template-columns: repeat(4, minmax(180px, 1fr));
+                gap: 16px;
+            }
+        }
+
         .difficulty-card {
             background: linear-gradient(160deg, #f7fdf9 0%, #eef9f3 100%);
             border: 1px solid #cfe9dc;
