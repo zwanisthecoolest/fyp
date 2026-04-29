@@ -2161,6 +2161,13 @@
             params.set('game_name', gameName);
             params.set('limit', '100');
 
+            const userFilters = getCurrentUserSessionFilters();
+            userFilters.forEach((filter) => {
+                if (filter && filter.key && filter.value !== undefined && filter.value !== null && String(filter.value).trim() !== '') {
+                    params.set(filter.key, String(filter.value));
+                }
+            });
+
             const response = await fetch({{ Js::from(route('api.track-progress.index')) }} + '?' + params.toString(), {
                 headers: {
                     Accept: 'application/json',
