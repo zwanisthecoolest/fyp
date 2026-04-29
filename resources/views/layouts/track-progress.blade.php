@@ -1387,12 +1387,14 @@
             const filters = [];
             const playerId = String(currentUser.playerId || currentUser.player_id || '').trim();
             const userId = String(currentUser.userId || currentUser.user_id || '').trim();
-            const username = String(currentUser.username || currentUser.name || '').trim();
 
+            // Prefer source_player_id to avoid mixing sessions from stale user_id values.
             if (playerId) {
                 filters.push({ key: 'source_player_id', value: playerId });
+                return filters;
             }
 
+            // Fallback for users without a Python player id.
             if (userId) {
                 filters.push({ key: 'user_id', value: userId });
             }
