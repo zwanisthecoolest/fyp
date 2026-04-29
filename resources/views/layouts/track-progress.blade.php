@@ -2152,33 +2152,22 @@
         }
 
         async function fetchSessionsByGame(gameName) {
-            const filters = getCurrentUserSessionFilters();
+            const params = new URLSearchParams();
+            params.set('game_name', gameName);
+            params.set('limit', '100');
 
-            if (!filters.length) {
-                return [];
+            const response = await fetch({{ Js::from(route('api.track-progress.index')) }} + '?' + params.toString(), {
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch sessions for ' + gameName);
             }
 
-            const responseGroups = await Promise.all(filters.map(async (filter) => {
-                const params = new URLSearchParams();
-                params.set('game_name', gameName);
-                params.set('limit', '100');
-                params.set(filter.key, filter.value);
-
-                const response = await fetch(reactionSessionsApiUrl + '?' + params.toString(), {
-                    headers: {
-                        Accept: 'application/json',
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch sessions for ' + gameName);
-                }
-
-                const payload = await response.json();
-                return Array.isArray(payload.data) ? payload.data : [];
-            }));
-
-            return mergeUniqueSessions(responseGroups);
+            const payload = await response.json();
+            return Array.isArray(payload.data) ? payload.data : [];
         }
 
         async function loadPanelStats(panelKey, gameName) {
