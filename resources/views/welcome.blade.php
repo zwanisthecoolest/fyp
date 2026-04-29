@@ -16,10 +16,11 @@
             line-height: 1.6;
             color: #1f3330;
             background: linear-gradient(140deg, #4ecdc4 0%, #99d9ba 45%, #eafaf3 100%);
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
             display: grid;
-            grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr) auto;
+            grid-template-rows: auto auto auto auto;
         }
 
         /* Header */
@@ -268,7 +269,6 @@
             align-items: center;
             border: 1px solid #cfe9dc;
             box-shadow: 0 14px 32px rgba(0, 0, 0, 0.16);
-            overflow: hidden;
         }
 
         .purpose-content h1 {
@@ -320,7 +320,6 @@
         .features-section {
             padding: 16px 26px;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
-            overflow: hidden;
         }
 
         .features-grid {
