@@ -1446,6 +1446,27 @@
             return Number.isFinite(parsed) ? parsed : null;
         }
 
+        function getSessionMeta(session) {
+            if (!session || session.meta === null || session.meta === undefined) {
+                return {};
+            }
+
+            if (typeof session.meta === 'object') {
+                return session.meta;
+            }
+
+            if (typeof session.meta === 'string') {
+                try {
+                    const parsed = JSON.parse(session.meta);
+                    return parsed && typeof parsed === 'object' ? parsed : {};
+                } catch (error) {
+                    return {};
+                }
+            }
+
+            return {};
+        }
+
         function average(values) {
             if (!values.length) {
                 return null;
@@ -1463,7 +1484,8 @@
         }
 
         function percentFromSession(session) {
-            const metaAccuracy = toNumber(session.meta && session.meta.accuracy);
+            const meta = getSessionMeta(session);
+            const metaAccuracy = toNumber(meta.accuracy);
             if (metaAccuracy !== null) {
                 return Math.max(0, Math.min(100, metaAccuracy));
             }
@@ -1581,9 +1603,10 @@
         }
 
         function getSessionDifficulty(session) {
+            const meta = getSessionMeta(session);
             const value =
-                (session.meta && session.meta.difficulty) ||
-                (session.meta && session.meta.level) ||
+                meta.difficulty ||
+                meta.level ||
                 session.difficulty ||
                 null;
 
@@ -2104,14 +2127,14 @@
 
         function buildMonkeyBallStats(sessions) {
             const durationValues = sessions.map((session) => toNumber(session.duration_ms)).filter((value) => value !== null && value > 0);
-            const bestRanks = sessions
-                .map((session) => toNumber(session.meta && session.meta.rank))
-                .filter((value) => value !== null);
+            const avgReactionValues = sessions
+                .map((session) => toNumber(session.avg_reaction_time_ms))
+                .filter((value) => value !== null && value > 0);
             const improvement = calculateImprovementByThree('monkey-ball', sessions);
 
             return {
                 primary: durationValues.length ? formatMillisecondsAsSeconds(Math.max(...durationValues)) : '--',
-                secondary: bestRanks.length ? '#' + String(Math.min(...bestRanks)) : '--',
+                secondary: avgReactionValues.length ? formatMillisecondsAsSeconds(Math.round(average(avgReactionValues))) : '--',
                 sessions: sessions.length,
                 improvement: improvement.bar,
                 improvementText: '',
@@ -2179,7 +2202,12 @@
             }
 
             const payload = await response.json();
-            return Array.isArray(payload.data) ? payload.data : [];
+            const rows = Array.isArray(payload.data) ? payload.data : [];
+
+            return rows.map((session) => ({
+                ...session,
+                meta: getSessionMeta(session),
+            }));
         }
 
         async function loadPanelStats(panelKey, gameName) {
